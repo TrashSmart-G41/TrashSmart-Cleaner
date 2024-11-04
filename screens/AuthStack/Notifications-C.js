@@ -50,7 +50,76 @@ const SignUpEmail = ({ navigation }) => {
                 onChangeText={OnChangeEmail}
                 placeholder={'sample@domain.com'}
                 keyboardType={'default'}
-            />           
+            />
+
+            <TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            /><TextInput
+                className='w-full bg-gray-100 border-2 border-gray-200 rounded-lg px-5 py-1.5 mt-4 
+                            text-base'
+                value={password}
+                onChangeText={OnChangePassword}
+                placeholder={'Enter Password'}
+                keyboardType={'default'}
+            />
+
+
+
+            
 
             <View className='flex-row items-center mt-8' >
                 <View className='flex-1 h-0.5 bg-gray-200 ' />
@@ -197,6 +266,24 @@ const SignUpEmail = ({ navigation }) => {
                 </Text>
                 <View className='flex-1 h-0.5 bg-gray-200' />
             </View><View className='flex-row items-center mt-8' >
+                <View className='flex-1 h-0.5 bg-gray-200 ' />
+                <Text className='text-sm text-gray-500 mx-4' >
+                    or continue with
+                </Text>
+                <View className='flex-1 h-0.5 bg-gray-200' />
+            </View><View className='flex-row items-center mt-8' >
+                <View className='flex-1 h-0.5 bg-gray-200 ' />
+                <Text className='text-sm text-gray-500 mx-4' >
+                    or continue with
+                </Text>
+                <View className='flex-1 h-0.5 bg-gray-200' />
+            </View><View className='flex-row items-center mt-8' >
+                <View className='flex-1 h-0.5 bg-gray-200 ' />
+                <Text className='text-sm text-gray-500 mx-4' >
+                    or continue with
+                </Text>
+                <View className='flex-1 h-0.5 bg-gray-200' />
+            
                 <View className='flex-1 h-0.5 bg-gray-200 ' />
                 <Text className='text-sm text-gray-500 mx-4' >
                     or continue with
