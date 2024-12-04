@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import TabNavigator from './TabNavigator';
-import CustomDrawer from './CustomDrawer';
+import CustomDrawer from '../components/CustomDrawer';
 
 import { Ionicons , MaterialIcons , AntDesign , MaterialCommunityIcons } from '@expo/vector-icons';
 import Language from '../screens/DrawerNavigations/Language';

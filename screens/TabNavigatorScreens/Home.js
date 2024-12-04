@@ -1,58 +1,88 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import axios from 'axios';
+import { BASE_URL } from '../../utils/config';
+import { AuthContext } from '../../context/AuthContext';
 
-const newItemsToDisplay = [
-  { date: 'Saturday, 20th July', location: 'Fort Railway Station', id: 'Bin 04' },
-  { date: 'Saturday, 20th July', location: 'Fort Railway Station', id: 'Bin 11' },
-  { date: 'Falafel', location: '$7.50', id: '3C' },
-  { date: 'Marinated Olives', location: '$5.00', id: '4D' }
-];
+const Home = ({ navigation }) => {
+  const [name, onChangeName] = useState('');
+  const [address, onChangeAddress] = useState('');
+  const { decodedToken, userToken } = useContext(AuthContext);
+  const userId = decodedToken.userId;
 
-const completedItemsToDisplay = [
-  { date: 'Saturday, 20th July', location: 'Canteen, Fort Railway Station', id: 'Bin 04' },
-  { date: 'Saturday, 20th July', location: 'Fort Railway Station', id: 'Bin 11' },
-  { date: 'Falafel', location: '$7.50', id: '3C' },
-  { date: 'Marinated Olives', location: '$5.00', id: '4D' }
-];
+  const newItemsToDisplay = [
+    { date: 'Wednesday, 4th December', location: 'Joseph Fraser Road', id: 'Bin 04' },
+    { date: 'Wednesday, 4th December', location: 'Colombo 07', id: 'Bin 11' },
+  ];
 
-const NewItem = ({ date, location, id }) => (
-<View className='flex-row flex-1 bg-white py-2 px-4 my-2 rounded-lg' >
-  <Image className='h-7 w-7 mr-4 self-start mt-1.5'
-      source={require('../../assets/png/bin_icon_1.png')}
-      resizeMode="contain"
-  />
+  const completedItemsToDisplay = [
+    { date: 'Tuesday, 3rd December', location: 'Canteen, Fort Railway Station', id: 'Bin 08' },
+    { date: 'Tuesday, 2nd December', location: 'Fort Railway Station', id: 'Bin 20' },
+  ];
 
-  <View className='' >
-    <Text className='text-gray-500 text-sm font-normal leading-none' >{date}</Text>
-    <Text className='text-gray-500 text-base font-normal leading-none mt-[-3]' >{location}</Text>
-    <Text className='text-black text-sm font-medium leading-none ' >{id}</Text>
-  </View>
-
-  <View className='flex-1 justify-center items-end' >
-    <Entypo name="dot-single" size={44} color="#7ED957" />
-  </View>
-
-</View>
-);
-
-const CompletedItem = ({ date, location, id }) => (
+  const NewItem = ({ date, location, id }) => (
   <View className='flex-row flex-1 bg-white py-2 px-4 my-2 rounded-lg' >
-    <View className='mr-4 self-start mt-1.5' >
-      <Entypo name="check" size={24} color="#7ED957" />
-    </View>
-  
+    <Image className='h-7 w-7 mr-4 self-start mt-1.5'
+        source={require('../../assets/png/bin_icon_1.png')}
+        resizeMode="contain"
+    />
+
     <View className='' >
       <Text className='text-gray-500 text-sm font-normal leading-none' >{date}</Text>
       <Text className='text-gray-500 text-base font-normal leading-none mt-[-3]' >{location}</Text>
       <Text className='text-black text-sm font-medium leading-none ' >{id}</Text>
     </View>
-  
+
+    <View className='flex-1 justify-center items-end' >
+      <Entypo name="dot-single" size={44} color="#7ED957" />
+    </View>
+
   </View>
   );
 
-const Home = ({ navigation }) => {
+  const CompletedItem = ({ date, location, id }) => (
+    <View className='flex-row flex-1 bg-white py-2 px-4 my-2 rounded-lg' >
+      <View className='mr-4 self-start mt-1.5' >
+        <Entypo name="check" size={24} color="#7ED957" />
+      </View>
+    
+      <View className='' >
+        <Text className='text-gray-500 text-sm font-normal leading-none' >{date}</Text>
+        <Text className='text-gray-500 text-base font-normal leading-none mt-[-3]' >{location}</Text>
+        <Text className='text-black text-sm font-medium leading-none ' >{id}</Text>
+      </View>
+    
+    </View>
+    );
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/v1/cleaner/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+
+      const userData = response.data;
+
+      console.log(userData.communalBins)
+      onChangeName(userData.firstName || 'N/A');
+      onChangeAddress(userData.address || 'N/A');
+
+    } catch (error) {
+      console.error('Error fetching user data:', error.response?.data || error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []); 
+
   const renderNewItem = ({ item }) => <NewItem date={item.date} location={item.location} id={item.id} />;
   const renderCompletedItem = ({ item }) => <CompletedItem date={item.date} location={item.location} id={item.id} />;
 
@@ -61,7 +91,7 @@ const Home = ({ navigation }) => {
 
       <View className='flex-row justify-between items-center px-1' >
         <Text className='text-2xl text-black font-bold' >
-          Good Morning, Siri
+            Good Morning, {name}
         </Text>
 
         <View className='flex-row justify-between items-center space-x-2'>
@@ -73,7 +103,7 @@ const Home = ({ navigation }) => {
       <View className='flex-row items-end mt-2' >
         <Ionicons name="location-outline" size={32} color="#22C55E" />
         <Text className='text-lg text-gray-500 font-medium ml-1' >
-          Reid Avenue, Colombo 07
+            {address}
         </Text>
       </View>     
 

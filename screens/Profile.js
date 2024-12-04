@@ -1,15 +1,52 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import GoBackHeader from '../components/GoBackHeader'
-
 import { Ionicons } from '@expo/vector-icons';
+import { AuthContext } from '../context/AuthContext';
+import { BASE_URL } from '../utils/config';
+import axios from 'axios';
 
 
 const Profile = ({ navigation }) => {
-  const [name, onChangeName] = useState('Siri Perera');
-  const [email, onChangeEmail] = useState('siriperera@gmail.com');
-  const [phone, onChangePhone] = useState('077-4936420');
-  const [dob, onChangeDOB] = useState('17 March 1975');
+  const [name, onChangeName] = useState('');
+  const [email, onChangeEmail] = useState('');
+  const [phone, onChangePhone] = useState('');
+  const [address, onChangeAddress] = useState('');
+
+  const { decodedToken, userToken } = useContext(AuthContext);
+  const  userId = decodedToken.userId
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/api/v1/cleaner/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+  
+      const userData = response.data;
+  
+      // Update state with the fetched data
+      onChangeName(userData.firstName + " " + userData.lastName || 'N/A');
+      onChangeEmail(userData.email || 'N/A');
+      onChangePhone(userData.contactNo || 'N/A');
+      onChangeAddress(userData.address || 'N/A');
+  
+      console.log("User Data:", response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error.response?.data || error.message);
+      throw error;
+    }
+  };
+  
+  
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   return (
     <View className='flex-1 bg-white'>
@@ -68,13 +105,13 @@ const Profile = ({ navigation }) => {
 
         <View className='mt-6'>
           <Text className='text-lg text-gray-400/90 font-medium' >
-            Date of Birth
+            Address
           </Text>
           <TextInput
               className='text-lg text-gray-500 font-normal px-6 mt-2.5'
-              value={dob}
-              onChangeText={onChangeDOB}
-              placeholder='Enter Date of Birth'
+              value={address}
+              onChangeText={onChangeAddress}
+              placeholder='Enter Address'
               keyboardType='default'
           />
         </View>

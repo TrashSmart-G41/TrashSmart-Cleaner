@@ -3,9 +3,8 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 
 const completedItemsToDisplay = [
-    { date: 'Sat, 20th July', location: 'Canteen, Fort Railway Station', id: 'Bin 20' },
-    { date: 'Fri, 22nd March', location: 'Fort Railway Station', id: 'Bin 11' },
-    { date: 'Falafel', location: '$7.50', id: '3C' }
+    { date: 'Wednesday, 4th December', location: 'Joseph Fraser Road', id: 'Bin 04' },
+    { date: 'Wednesday, 4th December', location: 'Colombo 07', id: 'Bin 11' },
   ];
 
 const CompletedItem = ({ date, location, id }) => (

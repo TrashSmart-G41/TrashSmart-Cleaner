@@ -2,11 +2,9 @@ import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 
 const completedItemsToDisplay = [
-    { date: 'Sat, 20th July', location: 'Canteen, Fort Railway Station', id: 'Bin 20' },
-    { date: 'Fri, 22nd March', location: 'Fort Railway Station', id: 'Bin 11' },
-    { date: 'Falafel', location: '$7.50', id: '3C' },
-    { date: 'Marinated Olives', location: '$5.00', id: '4D' }
-  ];
+  { date: 'Tuesday, 3rd December', location: 'Canteen, Fort Railway Station', id: 'Bin 08' },
+  { date: 'Tuesday, 2nd December', location: 'Fort Railway Station', id: 'Bin 20' },
+];
 
 const CompletedItem = ({ date, location, id }) => (
 <View className='flex-row bg-[#F3F2F2] py-2.5 px-5 my-2 rounded-lg' >

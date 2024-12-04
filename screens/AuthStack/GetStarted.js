@@ -60,7 +60,7 @@ const GetStarted = ({ navigation }) => {
         />
       </View>
 
-      <Pressable onPress={()=> navigation.navigate('SignUpPhone') } className='w-80 bg-green-500 rounded-xl py-3.5 mt-10 self-center mb-20'>
+      <Pressable onPress={()=> navigation.navigate('LoginEmail') } className='w-80 bg-green-500 rounded-xl py-3.5 mt-10 self-center mb-20'>
             <Text className='text-white text-lg text-center font-semibold'>Get Started</Text>
       </Pressable>
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Header from '../components/Header';
+import { Ionicons, FontAwesome5, Feather } from '@expo/vector-icons';
 import Home from '../screens/TabNavigatorScreens/Home';
 import Notifications from '../screens/TabNavigatorScreens/Notifications';
-import Header from './Header';
-import { Ionicons, FontAwesome5, Feather } from '@expo/vector-icons';
 import Collections from '../screens/TabNavigatorScreens/Collections';
 import MapScreen from '../screens/TabNavigatorScreens/Map';
 
